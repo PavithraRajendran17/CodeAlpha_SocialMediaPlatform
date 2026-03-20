@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tonogram | Express Yourself</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- AUTHENTICATION WRAPPER -->
+    <div class="main-wrapper" id="authWrapper">
+        <div class="brand-section">
+            <h1 class="logo-text">Tonogram</h1>
+            <p class="tagline">Share moments with <span>your community.</span></p>
+        </div>
+
+        <div class="auth-section">
+            <div class="glass-box" id="loginForm">
+                <h2 class="form-title">Log into Tonogram</h2>
+                <input type="text" id="loginUser" placeholder="Username or email" class="input-field">
+                <input type="password" id="loginPass" placeholder="Password" class="input-field">
+                <button class="primary-btn" onclick="handleLogin()">Log In</button>
+                <div class="divider"><span>OR</span></div>
+                <div class="footer-box">
+                    <p>Don't have an account? <span onclick="toggleForm()" style="color:#0095f6; cursor:pointer;">Sign Up</span></p>
+                </div>
+            </div>
+
+            <div class="glass-box hidden" id="registerForm">
+                <h2 class="form-title">Sign Up</h2>
+                <input type="text" placeholder="Username" id="regUser" class="input-field">
+                <input type="email" placeholder="Email" id="regEmail" class="input-field">
+                <input type="password" placeholder="Password" id="regPass" class="input-field">
+                <button class="primary-btn" onclick="handleRegister()">Sign Up</button>
+                <div class="footer-box">
+                    <p>Have an account? <span onclick="toggleForm()" style="color:#0095f6; cursor:pointer;">Log In</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HOME PAGE -->
+    <div id="homePage" class="home-container hidden">
+        <!-- SIDE NAVIGATION -->
+        <div class="side-nav">
+            <h1 class="nav-logo">Tonogram</h1>
+            <div class="nav-links">
+                <div class="nav-item active" id="nav-feed" onclick="showSection('feedSection')"><span>🏠</span> Home</div>
+                <div class="nav-item" id="nav-search" onclick="showSection('searchSection')"><span>🔍</span> Search</div>
+                <div class="nav-item" id="nav-reels" onclick="showSection('reelsSection')"><span>🎬</span> Reels</div>
+                <div class="nav-item" id="nav-profile" onclick="showSection('profileSection')"><span>👤</span> Profile</div>
+            </div>
+            <div class="nav-item more" onclick="handleLogout()"><span>🚪</span> Logout</div>
+        </div>
+
+        <div class="content-wrapper">
+            <!-- FEED SECTION -->
+            <div id="feedSection" class="feed-area">
+                <div class="post-input-box">
+                    <textarea id="postContent" placeholder="What's happening?"></textarea>
+                    <button onclick="createNewPost()" class="post-btn">Post</button>
+                </div>
+                <div id="allPosts"></div>
+            </div>
+
+            <!-- SEARCH SECTION -->
+            <div id="searchSection" class="feed-area hidden">
+                <div class="post-input-box">
+                    <input type="text" id="searchInput" class="input-field" placeholder="Search users by name..." oninput="handleSearch()">
+                </div>
+                <div id="searchResults" class="user-list"></div>
+            </div>
+
+            <!-- REELS SECTION -->
+            <div id="reelsSection" class="feed-area hidden">
+                <div id="reelsContainer" class="reels-wrapper"></div>
+            </div>
+
+            <!-- PROFILE SECTION (Updated Structure) -->
+            <section id="profileSection" class="feed-area hidden">
+                <div class="profile-container">
+                    <div class="profile-banner">
+                        <img id="coverPic" src="https://images.unsplash.com/photo-1614850523296-e8c0d9732391?q=80&w=1000&auto=format&fit=crop" alt="Cover Photo" class="cover-image">
+                        <div class="profile-overlay"></div>
+                        <div class="banner-bottom">
+                            <h2 class="profile-fullname">
+                                <span id="profileUsernameSpan">Username</span>
+                                <i class="verified-icon">✔️</i>
+                            </h2>
+                            <p class="profile-bio-text" id="profileBioSpan">Welcome to my Tonogram profile!</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-header-new">
+                        <div class="profile-pic-stack">
+                            <img id="profilePic" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile" class="pfp-circle">
+                        </div>
+
+                        <div class="profile-main-info">
+                            <!-- Dynamic Stats Section -->
+                            <div class="user-stats-bar">
+                                <div class="stat-box"><strong id="postCount">0</strong> <span>Posts</span></div>
+                                <div class="stat-box"><strong id="followerCount">0</strong> <span>Followers</span></div>
+                                <div class="stat-box"><strong id="followingCount">0</strong> <span>Following</span></div>
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" onclick="updateBio()">Edit Profile</button>
+                                <button class="action-btn share-btn">Share</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabs with Line Switching Logic -->
+                    <div class="profile-tabs">
+                        <div id="tab-posts" class="tab-item active-tab" onclick="switchTab('posts')">
+                            <span>🖼️ Posts</span>
+                        </div>
+                        <div id="tab-saved" class="tab-item" onclick="switchTab('saved')">
+                            <span>🔖 Saved</span>
+                        </div>
+                        <div id="tab-tagged" class="tab-item" onclick="switchTab('tagged')">
+                            <span>👥 Tagged</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-content-body">
+                        <div id="userPostsGrid" class="posts-grid">
+                            <!-- Posts will appear here -->
+                        </div>
+                        <p id="emptyGridText" class="empty-state hidden">No posts yet.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT SIDEBAR -->
+            <div class="right-sidebar" id="rightSidebar">
+                <div class="user-info-brief">
+                    <div class="brief-text">
+                        <strong id="welcomeUser">User</strong>
+                        <p>Tonogram Member</p>
+                    </div>
+                </div>
+                <p class="suggest-title">Suggested for you</p>
+                <div id="userSuggestions"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleForm() {
+            document.getElementById('loginForm').classList.toggle('hidden');
+            document.getElementById('registerForm').classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
