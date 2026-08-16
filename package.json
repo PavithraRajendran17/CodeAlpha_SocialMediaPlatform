@@ -1,0 +1,13 @@
+{
+  "name": "tonogram",
+  "version": "1.0.0",
+  "description": "Tonogram Social Media Platform - Complete Application",
+  "scripts": {
+    "install:backend": "cd backend && npm install",
+    "start:backend": "cd backend && node server.js",
+    "start:frontend": "cd frontend && python -m http.server 3000"
+  },
+  "keywords": ["social-media", "fullstack", "tonogram"],
+  "author": "Pavithra Rajendran",
+  "license": "ISC"
+}
