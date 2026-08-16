@@ -6,6 +6,8 @@
     <title>Tonogram | Express Yourself</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Tonogram - A complete social media platform built with Node.js, Express, MongoDB, and vanilla JavaScript.">
+    <meta name="author" content="Pavithra Rajendran">
 </head>
 <body>
 
@@ -240,6 +242,36 @@
 
     <script src="config.js"></script>
     <script src="script.js"></script>
+    <script>
+        // GitHub Pages Deployment Notice
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.location.hostname.includes('github.io')) {
+                const notice = document.createElement('div');
+                notice.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+                    color: white;
+                    padding: 10px;
+                    text-align: center;
+                    font-size: 14px;
+                    z-index: 10000;
+                    font-weight: 600;
+                `;
+                notice.innerHTML = `
+                    🚀 GitHub Pages Demo - For full functionality, run locally or deploy backend. 
+                    <a href="https://github.com/PavithraRajendran17/CodeAlpha_SocialMediaPlatform" style="color: white; text-decoration: underline;">View Setup Instructions</a>
+                    <button onclick="this.parentElement.remove()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 2px 8px; margin-left: 10px; cursor: pointer; border-radius: 4px;">✕</button>
+                `;
+                document.body.insertBefore(notice, document.body.firstChild);
+                
+                // Add padding to body to account for notice
+                document.body.style.paddingTop = '40px';
+            }
+        });
+    </script>
     <script>
         function toggleForm() {
             document.getElementById('loginForm').classList.toggle('hidden');
