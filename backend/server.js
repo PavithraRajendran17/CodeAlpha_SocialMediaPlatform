@@ -10,11 +10,28 @@ const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const notificationRoute = require("./routes/notifications");
 
-dotenv.config();
+// Load environment variables from .env file
+dotenv.config({ path: path.join(__dirname, '.env') });
+
 const app = express();
 
+// Use fallback values if environment variables are not set
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/CodeAlphaSocial';
+const JWT_SECRET = process.env.JWT_SECRET || 'tonogram_development_secret_key';
+const PORT = process.env.PORT || 5000;
+
+// Make JWT_SECRET available globally for routes
+process.env.JWT_SECRET = JWT_SECRET;
+
+// Debug environment variables
+console.log('Environment configuration:', {
+    MONGO_URI: MONGO_URI ? 'Set' : 'Using fallback',
+    JWT_SECRET: JWT_SECRET ? 'Set' : 'Using fallback',
+    PORT: PORT
+});
+
 // 2. Database Connection
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(MONGO_URI)
     .then(() => console.log("✅ MongoDB Connected Successfully!"))
     .catch(err => console.log("❌ Database Error: ", err));
 
@@ -47,7 +64,6 @@ app.use("/api/posts", postRoute);
 app.use("/api/notifications", notificationRoute);
 
 // 8. Server Start
-const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server is running on http://localhost:${PORT}`);
     console.log(`📡 API available at http://localhost:${PORT}/api`);
