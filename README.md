@@ -2,6 +2,50 @@
 
 A complete, functional social media web application built with Node.js, Express, MongoDB, and vanilla JavaScript. Tonogram allows users to create posts, share images, follow others, like and comment on posts, and much more.
 
+## 🌐 Live Demo
+
+**GitHub Pages Demo**: https://pavithrarajendran17.github.io/CodeAlpha_SocialMediaPlatform/
+
+### What's Available on GitHub Pages
+- ✅ Complete user interface and design
+- ✅ All navigation and UI elements
+- ✅ Responsive design (mobile/tablet/desktop)
+- ✅ Dark/light mode toggle
+- ✅ Visual demonstration of all features
+- ✅ Professional Tonogram branding
+
+### What Requires Local Setup
+- ❌ User authentication (signup/login)
+- ❌ Creating posts with data persistence
+- ❌ Like/unlike functionality
+- ❌ Comment system
+- ❌ Follow/unfollow features
+- ❌ Real-time data updates
+
+⚠️ **Note**: The GitHub Pages deployment is a **frontend-only demo**. For full functionality including authentication, posts, likes, comments, and data persistence, please run the application locally using the setup instructions below.
+
+## 🏗️ Deployment Architecture
+
+### GitHub Pages (Frontend)
+- **Purpose**: UI/UX demonstration and portfolio showcase
+- **Branch**: `gh-pages`
+- **Contents**: Frontend files only (HTML, CSS, JS, assets)
+- **Limitations**: No backend connectivity, no data persistence
+
+### Local Development (Full Stack)
+- **Purpose**: Complete application with all features
+- **Components**: Frontend + Backend + Database
+- **Functionality**: All features including authentication, data persistence
+- **Setup**: Follow the Quick Start instructions below
+
+### Production Deployment (Future)
+- **Frontend**: GitHub Pages, Netlify, or Vercel
+- **Backend**: Heroku, Render, or Railway
+- **Database**: MongoDB Atlas
+- **Configuration**: Update `frontend/config.js` with production API URL
+
+## 🚀 Quick Start (Localhost - Full Functionality)
+
 ## 🚀 Quick Start (Localhost)
 
 ### Prerequisites
