@@ -46,7 +46,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // 5. Serve static files from uploads
-app.use("/assets", express.static(path.join(__dirname, "../frontend/assets")));
+app.use("/assets", express.static(path.join(__dirname, "../assets")));
 
 // 6. Root Route
 app.get('/', (req, res) => {

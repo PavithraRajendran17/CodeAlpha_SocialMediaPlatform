@@ -29,3 +29,8 @@ Thumbs.db
 # Build
 dist/
 build/
+
+# Exclude original README from GitHub Pages deployment
+README_ORIGINAL.md
+DEPLOYMENT_SUMMARY.md
+GITHUB_PAGES_CONFIG.md
